@@ -4,8 +4,8 @@ on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
-        # Push events on master branch
-        - 'releases/*'
+        # Push events on master branch 
+        - 'test/*'
     tags:
         - "v*"
 
