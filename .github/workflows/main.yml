@@ -41,3 +41,4 @@ jobs:
       # - name: Publish the package to GitHub packages
       #   working-directory: src/Quirco.DataPumper
       #   run: nuget push bin\Debug\*.nupkg -source "github" -SkipDuplicate
+      
