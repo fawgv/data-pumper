@@ -19,7 +19,7 @@ jobs:
         shell: bash
         
       - name: Zip .exe
-        run: echo {{ steps.get_version.outputs.SOURCE_TAG }}
+        run: echo ${{ steps.get_version.outputs.SOURCE_TAG }}
         
       - uses: nuget/setup-nuget@v1.0.2
         with:
