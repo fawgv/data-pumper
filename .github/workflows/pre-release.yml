@@ -1,0 +1,59 @@
+name: publish to nuget 
+
+on: 
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+        # Push events on master branch
+        - 'releases/*'
+    tags:
+        - "v*"
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Get the tag version
+        id: get_version
+        run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/v}
+        shell: bash
+        
+      - name: Tag version
+        run: echo ${{ steps.get_version.outputs.SOURCE_TAG }}
+        
+      - uses: nuget/setup-nuget@v1.0.2
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: 'latest'
+          
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+        env:
+           working-directory: src/DataPumper.Console
+      - run: msbuild -t:restore
+        working-directory: src/DataPumper.Console
+        
+      - run: msbuild -t:build -p:Configuration=Release -p:PackageVersion=${{ steps.get_version.outputs.SOURCE_TAG }}
+        working-directory: src/DataPumper.Console
+      
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+    - uses: montudor/action-zip@v0.1.0
+    - name: Zip Output    
+      run: |
+        zip -qq -r ./data-pumper.console.zip ./DataPumper.Console
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"        
+        prerelease: true
+        title: "Development Build"
+        files: |
+          readme.md
+          data-pumper.console.zip

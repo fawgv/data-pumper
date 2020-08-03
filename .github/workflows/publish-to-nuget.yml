@@ -2,6 +2,10 @@ name: publish to nuget
 
 on: 
   push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+        # Push events on master branch
+        - master
     tags:
         - "v*"
 
