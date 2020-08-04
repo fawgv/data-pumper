@@ -36,7 +36,7 @@ jobs:
       - run: msbuild -t:build -p:Configuration=Release -p:PackageVersion=${{ steps.get_version.outputs.SOURCE_TAG }}
         working-directory: src/Quirco.DataPumper
       #- name: Nuget Add Source
-      #  run: nuget sources Add -Name "githubdatapumper" -Source https://api.nuget.org/v3/index.json
+      #  run: nuget sources Add -Name "githubdatapumper" -Source https://api.nuget.org/v3/index.json 
       - name: Nuget SetAPIKey
         run: nuget setapikey ${{ secrets.NUGET_API_KEY }}
       - name: Publish the package to nuget.org
