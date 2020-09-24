@@ -30,13 +30,11 @@ jobs:
         
       - name: Restore NuGet packages
         run: nuget restore data-pumper.sln
-        env:
-           working-directory: src/Quirco.DataPumper
       
       - name: Build the Solution
         run: msbuild DataPumper.Console.csproj  /p:Configuration=Release
         env:
-           working-directory: src/Quirco.DataPumper
+           working-directory: src/DataPumper.Console
       
       
 
