@@ -32,9 +32,7 @@ jobs:
         run: nuget restore data-pumper.sln
       
       - name: Build the Solution
-        run: msbuild DataPumper.Console.csproj  /p:Configuration=Release
-        env:
-           working-directory: src/DataPumper.Console
+        run: msbuild data-pumper.sln  /p:Configuration=Release
       
       
 
