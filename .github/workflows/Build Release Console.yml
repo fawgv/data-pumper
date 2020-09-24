@@ -33,12 +33,11 @@ jobs:
       
       - name: Build the Solution
         run: msbuild data-pumper.sln  /p:Configuration=Release
-      
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2.1.4
+              
+      - name: Create a Release
+        uses: actions/create-release@v1.1.4
         with:
-          name: release_data_pumper
-          path: bin\DataPumper.Console
+          release_name: Release v1.0.1
             
       
 
