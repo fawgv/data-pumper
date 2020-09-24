@@ -34,12 +34,12 @@ jobs:
       - name: Build the Solution
         run: msbuild data-pumper.sln  /p:Configuration=Release
       
-      - name: github-action-publish-binaries
-        # You may pin to the exact commit or the version.
-        # uses: skx/github-action-publish-binaries@75ce5546020fc1848da842f40240f9fa03e7a3a8
-        uses: skx/github-action-publish-binaries@release-0.14
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.1.4
         with:
-            path: bin\DataPumper.Console
+          name: release_data_pumper
+          path: bin\DataPumper.Console
+            
       
 
       
