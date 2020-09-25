@@ -1,3 +1,5 @@
+[![Latest release](https://img.shields.io/github/v/release/fawgv/data-pumper)](https://github.com/fawgv/data-pumper/releases/latest)
+
 Data Pumper
 ===========
 
