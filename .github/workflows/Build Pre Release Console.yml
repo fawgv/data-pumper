@@ -51,7 +51,7 @@ jobs:
         with:
           tag_name: v${{ steps.get_version.outputs.SOURCE_TAG }}
           release_name: PreRelease v${{ steps.get_version.outputs.SOURCE_TAG }}
-          #prerelease: true
+          prerelease: true
       
       - name: Upload a Release Asset
         id: upload-release-asset
